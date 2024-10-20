@@ -1,0 +1,51 @@
+#VU 1.37. - Created by Panthera. Scripted effects for new religious mechanic
+on_province_religion_converted_relgious_country_effect = {
+	if = {
+		limit = {
+			owner = {
+				has_country_flag = muslim_zealot_country
+			}
+		}
+		if = {
+			limit = {
+				NOT = { religion_group = muslim }
+				NOT = { has_province_modifier = spread_islam_around_the_world_province_zealot_mod }
+			}
+			add_province_modifier = {
+				name = spread_islam_around_the_world_province_zealot_mod
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				religion_group = muslim
+				has_province_modifier = spread_islam_around_the_world_province_zealot_mod
+			}
+			remove_province_modifier = spread_islam_around_the_world_province_zealot_mod
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_country_flag = muslim_pious_country
+			}
+		}
+		if = {
+			limit = {
+				NOT = { religion_group = muslim }
+				NOT = { has_province_modifier = spread_islam_around_the_world_province_pious_mod }
+			}
+			add_province_modifier = {
+				name = spread_islam_around_the_world_province_pious_mod
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				religion_group = muslim
+				has_province_modifier = spread_islam_around_the_world_province_pious_mod
+			}
+			remove_province_modifier = spread_islam_around_the_world_province_pious_mod
+		}
+	}
+}

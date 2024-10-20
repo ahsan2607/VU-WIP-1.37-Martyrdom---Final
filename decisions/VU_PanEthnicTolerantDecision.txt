@@ -1,0 +1,122 @@
+country_decisions = {
+	change_to_root_culture = {
+		major = yes
+		potential = {
+			NOT = {
+				ruler_culture = ROOT
+			}
+			has_idea_group = client_ideas
+			overlord = {
+				has_country_flag = client_ruler_allowed_adopt_local_culture
+			}
+		}
+		allow = {
+			adm_power = 20
+			dip_power = 20
+			mil_power = 20
+			OR = {
+				NOT = {
+					ruler_culture = ROOT
+				}
+			}
+		}
+		effect = {
+			add_prestige = 10
+			add_adm_power = -20
+			add_dip_power = -20
+			add_mil_power = -20
+			add_legitimacy = 10
+			set_ruler_culture = ROOT
+			if = {
+				limit = { has_heir = yes }
+				set_heir_culture = ROOT
+				add_heir_claim = 10
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	allow_client_ruler_adopt_local_culture = {
+		major = no
+		potential = {
+			NOT = { has_country_flag = client_ruler_allowed_adopt_local_culture }
+		}
+		allow = {
+			OR = {
+				has_subject_of_type = client_vassal
+				has_subject_of_type = client_march
+			}
+		}
+		effect = {
+			set_country_flag = client_ruler_allowed_adopt_local_culture
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	disallow_client_ruler_adopt_local_culture = {
+		major = no
+		potential = {
+			has_country_flag = client_ruler_allowed_adopt_local_culture
+		}
+		allow = {
+			OR = {
+				has_subject_of_type = client_vassal
+				has_subject_of_type = client_march
+			}
+		}
+		effect = {
+			clr_country_flag = client_ruler_allowed_adopt_local_culture
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	#Release Cultural March
+	#Khalkha
+	establish_khalkha_subject = {
+		potential = {
+			OR = {
+				has_idea_group = influence_ideas
+				has_idea_group = humanist_ideas
+			}
+			is_free_or_tributary_trigger = yes
+			government_rank = 2
+		}
+		allow = {
+			is_free_or_tributary_trigger = yes
+			OR = {
+				full_idea_group = influence_ideas
+			}
+			NOT = { exists = KLK }
+			any_owned_province = {
+				region = mongolia_region
+				culture = khalkha
+			}
+			government_rank = 2
+		}
+		effect = {
+			hidden_effect = {
+				every_owned_province = {
+					limit = {
+						region = mongolia_region
+						culture = khalkha
+					}
+					add_core = KLK
+				}
+			}
+			release = KLK
+			create_march = KLK
+			KLK = {
+				add_liberty_desire = -25
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

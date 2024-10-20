@@ -1775,6 +1775,8 @@ on_startup = {
 
 # country
 on_religion_change = {
+	#VU 1.37. - Updated by Panthera. Add scripted effect for religious mechanic in on_actions
+	on_province_religion_converted_relgious_country_effect = yes
 	on_religion_change_effect = yes
 	on_religion_change_estate_privileges_effect = yes
 	judaism_on_religion_change_effect = yes
@@ -10578,6 +10580,8 @@ on_dependency_lost = {
 
 # ROOT = New vassal, FROM = Overlord
 on_create_vassal = {
+	#VU 1.37. - Updated by Panthera. Add scripted effect for religious mechanic in on_actions
+	on_province_religion_converted_relgious_country_effect = yes
 	on_religion_change_estate_privileges_effect = yes
 	if = {
 		limit = {

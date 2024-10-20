@@ -477,6 +477,14 @@ estate_dhimmi_guaranteed_autonomy = {
 			NOT = { religion_group = root }
 		}
 		NOT = { has_unlocked_estate_privilege = { estate_privilege = estate_dhimmi_guarantee_of_traditions } }
+		#VU 1.37. - Updated by Panthera. Add conditions for estate privilege for religious mechanic
+		NOT = {
+			OR = {
+				has_country_flag = muslim_pious_country
+				has_country_flag = muslim_zealot_country
+				has_country_flag = help_spreading_islam
+			}
+		}
 	}
 	on_granted = {
 		custom_tooltip = estate_dhimmi_guaranteed_autonomy_effect_tooltip

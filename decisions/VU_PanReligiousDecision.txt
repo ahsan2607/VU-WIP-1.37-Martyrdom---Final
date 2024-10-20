@@ -1,0 +1,238 @@
+#VU 1.37. - Created by Panthera. Religious decisions
+country_decisions = {
+	become_zealot_country = {
+		major = yes
+		potential = {
+			religion_group = muslim
+			has_idea_group = religious_ideas
+			NOT = { has_country_flag = muslim_zealot_country }
+			OR = {
+				is_subject = no
+				AND = {
+					is_subject = yes
+					overlord = {
+						NOT = {
+							OR = {
+								has_estate_privilege = estate_dhimmi_guaranteed_autonomy
+								has_estate_privilege = estate_brahmins_guaranteed_autonomy
+							}
+						}
+					}
+				}
+			}
+			ai = no
+		}
+		allow = {
+			religion_group = muslim
+			NOT = {
+				OR = {
+					has_estate_privilege = estate_dhimmi_guaranteed_autonomy
+					has_estate_privilege = estate_brahmins_guaranteed_autonomy
+				}
+			}
+			has_estate_privilege = estate_church_religious_state
+			has_country_flag = unified_islam
+			has_country_modifier = unified_islam
+			full_idea_group = religious_ideas
+			religious_unity = 1
+			385 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			410 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			379 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			384 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			OR = {
+				is_subject = no
+				AND = {
+					is_subject = yes
+					overlord = { religion = ROOT }
+				}
+			}
+		}
+		effect = {
+			set_country_flag = muslim_zealot_country
+			add_piety = 2
+			if = {
+				limit = { has_country_flag = muslim_pious_country }
+				clr_country_flag = muslim_pious_country
+			}
+			add_country_modifier = {
+				name = spread_islam_around_the_world_zealot_mod
+				duration = -1
+			}
+			hidden_effect = {
+				every_owned_province = {
+					limit = {
+						has_province_modifier = spread_islam_around_the_world_province_pious_mod
+					}
+					remove_province_modifier = spread_islam_around_the_world_province_pious_mod
+				}
+				every_owned_province = {
+					limit = {
+						NOT = { religion_group = muslim }
+						NOT = { has_province_modifier = spread_islam_around_the_world_province_zealot_mod }
+					}
+					add_province_modifier = {
+						name = spread_islam_around_the_world_province_zealot_mod
+						duration = -1
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 200
+	}
+	
+	become_pious_country = {
+		major = yes
+		potential = {
+			religion_group = muslim
+			has_idea_group = humanist_ideas
+			NOT = { 
+				has_country_flag = muslim_pious_country
+			}
+			OR = {
+				is_subject = no
+				AND = {
+					is_subject = yes
+					overlord = {
+						NOT = {
+							OR = {
+								has_estate_privilege = estate_dhimmi_guaranteed_autonomy
+								has_estate_privilege = estate_brahmins_guaranteed_autonomy
+							}
+						}
+					}
+				}
+			}
+			ai = no
+		}
+		allow = {
+			religion_group = muslim
+			NOT = {
+				OR = {
+					has_estate_privilege = estate_dhimmi_guaranteed_autonomy
+					has_estate_privilege = estate_brahmins_guaranteed_autonomy
+				}
+			}
+			has_estate_privilege = estate_church_religious_state
+			has_country_flag = unified_islam
+			has_country_modifier = unified_islam
+			full_idea_group = humanist_ideas
+			religious_unity = 1
+			385 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			410 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			379 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			384 = {
+				country_or_non_sovereign_subject_holds = ROOT
+				religion = ROOT
+				development = 20
+			}
+			OR = {
+				is_subject = no
+				AND = {
+					is_subject = yes
+					overlord = { religion = ROOT }
+				}
+			}
+		}
+		effect = {
+			set_country_flag = muslim_pious_country
+			add_piety = -2
+			if = {
+				limit = { has_country_flag = muslim_zealot_country }
+				clr_country_flag = muslim_zealot_country
+			}
+			add_country_modifier = {
+				name = spread_islam_around_the_world_pious_mod
+				duration = -1
+			}
+			hidden_effect = {
+				every_owned_province = {
+					limit = {
+						has_province_modifier = spread_islam_around_the_world_province_zealot_mod
+					}
+					remove_province_modifier = spread_islam_around_the_world_province_zealot_mod
+				}
+				every_owned_province = {
+					limit = {
+						NOT = { religion_group = muslim }
+						NOT = { has_province_modifier = spread_islam_around_the_world_province_pious_mod }
+					}
+					add_province_modifier = {
+						name = spread_islam_around_the_world_province_pious_mod
+						duration = -1
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+	stop_helping_spread_islam = {
+		major = yes
+		potential = {
+			has_country_flag = help_spreading_islam
+		}
+		allow = {
+			has_country_flag = help_spreading_islam
+			OR = {
+				has_country_modifier = help_spreading_islam_pious_mod
+				has_country_modifier = help_spreading_islam_zealot_mod
+			}
+			all_owned_province = {
+				religion_group = ROOT
+			}
+		}
+		effect = {
+			clr_country_flag = help_spreading_islam
+			if = {
+				limit = {
+					has_country_modifier = help_spreading_islam_pious_mod
+				}
+				remove_country_modifier = help_spreading_islam_pious_mod
+			}
+			if = {
+				limit = {
+					has_country_modifier = help_spreading_islam_zealot_mod
+				}
+				remove_country_modifier = help_spreading_islam_zealot_mod
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+}

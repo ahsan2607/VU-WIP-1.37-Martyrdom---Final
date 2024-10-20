@@ -1,0 +1,14 @@
+#VU 1.37. - Created by Panthera. Opinion modifier for religious mechanic
+accept_to_left_the_religion = {
+	opinion = -20
+	yearly_decay = 2
+}
+
+accept_to_join_the_religion = {
+	opinion = 50
+	yearly_decay = 2
+}
+religious_heathen_try_to_convert_true_faith = {
+	opinion = -10
+	yearly_decay = 4
+}
